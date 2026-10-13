@@ -302,6 +302,9 @@ function mapMatch(rawMatch: unknown, puuid: string, index: number): MatchSummary
 }
 
 async function fetchLiveRiotData(profile: ProfileRow): Promise<LiveRiotData | null> {
+  // Güvenlik: HENRIKDEV_API_KEY yalnızca sunucuda kullanılır (NEXT_PUBLIC_ öneki yok).
+  // Bu dosya bir Server Component'tir; asla "use client" eklenmemeli.
+  // Merkezi kural: yeni HenrikDev çağrıları önce /api/valorant/profile rotasına eklenir.
   const apiKey = process.env.HENRIKDEV_API_KEY;
   const riotName = profile.riot_name;
   const riotTag = profile.riot_tag;
